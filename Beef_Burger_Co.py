@@ -1,10 +1,9 @@
 beef_burgers = {
-    'Cheeseburger': 4.99,
+    'Cheeseburger': 12.50, 'Beef Burger': 16.50, 'Schlumberger': 17.60, 'Triple Bacon Artery Clogger': 19.99
 }
 
-total_order = []          
+total_order = []      
 total_order_prices = []   
-
 
 def menu():
     print('--- Beef Burger Menu ---')
