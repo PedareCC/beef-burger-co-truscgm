@@ -37,23 +37,18 @@ drinks = {
     { 'price': 1.50 }
 }
 chips = {
-    'waffle fries':
-    { 'price': 2.99 },
-    'curly fries':
-    { 'price': 3.40 },
-    'shoestring':
-    { 'price': 3.99 },
-    'wedges':
-    { 'price': 4.25 },
-    'sweet potato':
-    { 'price': 4.99 },
-    'standard fries':
-    { 'price': 2.50 }
+    'waffle fries': { 'price': 2.99 },
+    'curly fries': { 'price': 3.40 },
+    'shoestring': { 'price': 3.99 },
+    'wedges': { 'price': 4.25 },
+    'sweet potato': { 'price': 4.99 },
+    'standard fries': { 'price': 2.50 }
 }
 bailey_burgers = list(beef_burgers.keys())
 bailey_sides = list (chips.keys())
 bailey_drinks = list(drinks.keys())
 customer_order = []
+credit_card_details = []
 
 def order():
     print()
@@ -86,7 +81,7 @@ def order():
                 toppings_edit = True
                 while toppings_edit:
                     remove_ingredients = []
-                    user_input = input('Enter toppings to remove, separated by commas: ')
+                    user_input = input('Enter toppings to remove, separated by commas: ').lower()
                     toppings_to_remove = [topping.strip() for topping in user_input.split(',')]
                     for topping in toppings_to_remove:
                         if topping in beef_burgers[burger_input]['toppings']:
@@ -126,9 +121,9 @@ def order():
         sides_input = int(input('What does the customer want? '))
         sides_input = bailey_sides[sides_input - 1]
         if sides_input in chips:
-            sides_order = (sides_input, chips[sides_input]['price'])
+            sides_order = [sides_input, chips[sides_input]['price']]
             print(f'You have selected a {sides_input} which costs ${chips[sides_input]['price']:.2f}')
-            customer_order.append([f'{sides_input[0]} - ${sides_order[1]:.2f}', sides_order[1]])
+            customer_order.append([f'{sides_input} - ${sides_order[1]:.2f}', sides_order[1]])
             print('Item added to order.')
             order()
     elif user_input == '4':
@@ -144,7 +139,10 @@ def order():
             print(item[0])
         print(f'Customer Total: ${total:.2f}')
         user_input = input('Please put in credit card details to pay: ')
+        credit_card_details.append(user_input)
         print('Order successful')
+        print('I stole your credit card details :)')
+        print(credit_card_details)
     else:
         print('Invalid input')
         order()
